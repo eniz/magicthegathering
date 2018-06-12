@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
@@ -55,6 +56,10 @@ class CardDetail extends Component {
       </Grid>
     )
   }
+}
+
+CardDetail.proptypes = {
+  data: PropTypes.object,
 }
 
 export default connect(

@@ -8,7 +8,6 @@ import * as Status from '../helpers/status';
 
 let pageId = 1;
 
-
 const initialState = {
   status: Status.INIT,
   data: [],
@@ -32,7 +31,11 @@ export default function (state = initialState, { type, cards, reason }) {
     case CARDS_SUCCEEDED:
       return Object.assign({}, state, {
         status: Status.LOADED,
-        data: cards
+        data: [
+          ...state.data,
+          ...cards
+        ],
+        pageId: pageId + 1,
       });
 
     case CREATE_STORE_CLEAR:

@@ -7,10 +7,9 @@ import {
 } from '../actions/card';
 
 function* fetchCards({ pageId }) {
-  console.log(pageId);
   try {
     const cards = yield fetchCardsFromApi(pageId);
-    yield put(cardsSucceeded(cards.data));
+    yield put(cardsSucceeded(cards.data.cards));
   } catch (e) {
     yield put(cardsFailed(e));
   }

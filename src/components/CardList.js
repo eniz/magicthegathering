@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '../components/Card';
+import Loading from './Loading';
 
 const styles = {
   container: {
@@ -12,7 +13,7 @@ const styles = {
 }
 
 function CardList(props) {
-  const { classes, cards } = props;
+  const { classes, cards, isLoading } = props;
 
   return (
     <Grid container spacing={24} className={classes.container}>
@@ -21,12 +22,14 @@ function CardList(props) {
           <Card {...card} />
         </Grid>
       ))}
+      {isLoading && <Loading />}
     </Grid>
   );
 }
 
 CardList.propTypes = {
-  cards: PropTypes.array.required,
+  cards: PropTypes.any,
+  isLoading: PropTypes.bool,
 }
 
 export default withStyles(styles)(CardList);
