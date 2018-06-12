@@ -18,25 +18,25 @@ const initialState = {
 export default function (state = initialState, { type, cards, reason }) {
   switch (type) {
     case CARDS_REQUESTED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         status: Status.LOADING
-      });
+      }
 
     case CARDS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         status: Status.FAILED,
         reason
-      });
+      }
 
     case CARDS_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         status: Status.LOADED,
-        data: [
-          ...state.data,
-          ...cards
-        ],
-        pageId: pageId + 1,
-      });
+        data: [ ...state.data, ...cards ],
+        pageId: ++pageId
+      }
 
     case CREATE_STORE_CLEAR:
       return initialState;

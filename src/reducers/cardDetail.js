@@ -15,21 +15,24 @@ const initialState = {
 export default function (state = initialState, { type, card, reason }) {
   switch (type) {
     case CARD_DETAIL_REQUESTED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         status: Status.LOADING
-      });
+      }
 
     case CARD_DETAIL_FAILED:
-      return Object.assign({}, state, {
+      return  {
+        ...state,
         status: Status.FAILED,
         reason
-      });
+      }
 
     case CARD_DETAIL_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         status: Status.LOADED,
         data: card
-      });
+      }
 
     case CREATE_STORE_CLEAR:
       return initialState;

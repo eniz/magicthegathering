@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -12,10 +13,14 @@ import * as Status from '../helpers/status';
 
 const styles = {
   container: {
-    marginTop: 30,
+    width: '80%',
+    margin: '30px auto',
   },
   detail: {
     padding: 16,
+  },
+  failed: {
+    margin: '100px auto',
   }
 }
 
@@ -30,6 +35,7 @@ class CardDetail extends Component {
 
     const {
       classes,
+      history,
     } = this.props;
 
     const {
@@ -38,8 +44,10 @@ class CardDetail extends Component {
       text,
     } = this.props.data
 
+    const isFailed = this.props.status === Status.FAILED
+
     return (
-      <Grid container className={classes.container}>
+      <Grid container className={classes.container} spacing={24}>
         <Grid item xs={3}>
           <img src={ imageUrl } alt={ name } />
         </Grid>
@@ -51,8 +59,18 @@ class CardDetail extends Component {
             <Typography variant="body1" gutterBottom>
               { text }
             </Typography>
+            <Button variant="contained" color="secondary" onClick={() => {
+              history.goBack();
+            }}>
+              Back
+            </Button>
           </Paper>
         </Grid>
+        {isFailed &&
+          <Typography className={classes.failed}>
+            Something went wrong!
+          </Typography>
+        }
       </Grid>
     )
   }

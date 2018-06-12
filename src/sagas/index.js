@@ -1,10 +1,10 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import watchCards from './cards';
 import watchCardDetail from './cardDetail';
 
 export default function* root() {
-  yield [
+  yield all([
     fork(watchCards),
     fork(watchCardDetail)
-  ];
+  ]);
 }
