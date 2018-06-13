@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { cardsRequested } from '../actions/card';
 import CardList from '../components/CardList';
 import * as Status from '../helpers/status';
+import { MAX_CARD_COUNTS } from '../helpers/api';
 import debounce from '../helpers/debounce';
-
-const MAX_CARD_COUNTS = 100
 
 class HomePage extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class HomePage extends Component {
   componentWillMount() {
     this.props.actions.cardsRequested(this.props.pageId);
 
-    window.addEventListener('scroll', debounce(this.onScroll,200), false);
+    window.addEventListener('scroll', debounce(this.onScroll, 200), false);
   }
 
   componentWillUnmount() {
