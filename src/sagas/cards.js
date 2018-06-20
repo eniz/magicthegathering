@@ -8,12 +8,12 @@ import {
 
 function* fetchCards({ pageId }) {
   try {
-    const cards = yield fetchCardsFromApi(pageId);
-    yield put(cardsSucceeded(cards.data.cards));
+    const response = yield fetchCardsFromApi(pageId);
+    yield put(cardsSucceeded(response.data.cards));
   } catch (e) {
     yield put(cardsFailed(e));
   }
-  }
+}
 
 export default function* rootSaga() {
   yield takeLatest(CARDS_REQUESTED, fetchCards);

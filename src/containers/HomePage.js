@@ -14,7 +14,7 @@ class HomePage extends Component {
     this.onScroll = this.onScroll.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.cardsRequested(this.props.pageId);
 
     window.addEventListener('scroll', debounce(this.onScroll, 200), false);
@@ -35,13 +35,18 @@ class HomePage extends Component {
   }
 
   render() {
-    if (!this.props.data) return null;
+    const {
+      data,
+      status,
+    } = this.props
+
+    if (!data) return null;
 
     return (
       <CardList
-        cards={this.props.data}
-        isFailed={this.props.status === Status.FAILED}
-        isLoading={this.props.status === Status.LOADING} />
+        cards={data}
+        isFailed={status === Status.FAILED}
+        isLoading={status === Status.LOADING} />
     )
   }
 }

@@ -6,13 +6,11 @@ import {
 } from '../actions/card';
 import * as Status from '../helpers/status';
 
-let pageId = 1;
-
 const initialState = {
   status: Status.INIT,
   data: [],
   reason: null,
-  pageId: pageId,
+  pageId: 1,
 };
 
 export default function (state = initialState, { type, cards, reason }) {
@@ -35,7 +33,7 @@ export default function (state = initialState, { type, cards, reason }) {
         ...state,
         status: Status.LOADED,
         data: [ ...state.data, ...cards ],
-        pageId: ++pageId
+        pageId: state.pageId + 1
       }
 
     case CREATE_STORE_CLEAR:

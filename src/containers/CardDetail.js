@@ -44,8 +44,6 @@ class CardDetail extends Component {
       text,
     } = this.props.data
 
-    const isFailed = this.props.status === Status.FAILED
-
     return (
       <Grid container className={classes.container} spacing={24}>
         <Grid item xs={3}>
@@ -66,7 +64,7 @@ class CardDetail extends Component {
             </Button>
           </Paper>
         </Grid>
-        {isFailed &&
+        {this.props.status === Status.FAILED &&
           <Typography className={classes.failed}>
             Something went wrong!
           </Typography>
@@ -76,7 +74,7 @@ class CardDetail extends Component {
   }
 }
 
-CardDetail.proptypes = {
+CardDetail.propTypes = {
   data: PropTypes.object,
 }
 

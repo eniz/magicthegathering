@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styles = theme => ({
+const styles = {
   progress: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
   },
-});
+};
 
 function Loading(props) {
   const { classes } = props;
