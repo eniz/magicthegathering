@@ -2,7 +2,6 @@ import {
   CARDS_SUCCEEDED,
   CARDS_REQUESTED,
   CARDS_FAILED,
-  CREATE_STORE_CLEAR,
 } from '../actions/card';
 import * as Status from '../helpers/status';
 
@@ -35,9 +34,6 @@ export default function (state = initialState, { type, cards, reason }) {
         data: [ ...state.data, ...cards ],
         pageId: state.pageId + 1
       }
-
-    case CREATE_STORE_CLEAR:
-      return initialState;
 
     default:
       return state;

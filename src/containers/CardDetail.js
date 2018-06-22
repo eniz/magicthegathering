@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -78,12 +78,15 @@ CardDetail.propTypes = {
   data: PropTypes.object,
 }
 
-export default connect(
-  state => ({
-    data: state.cardDetail.data,
-    status: state.cardDetail.status
-  }),
-  dispatch => ({
-    actions: bindActionCreators({ cardDetailRequested }, dispatch)
-  })
-)(withStyles(styles)(CardDetail));
+export default compose(
+  connect(
+    state => ({
+      data: state.cardDetail.data,
+      status: state.cardDetail.status
+    }),
+    dispatch => ({
+      actions: bindActionCreators({ cardDetailRequested }, dispatch)
+    }),
+  ),
+  withStyles(styles),
+)(CardDetail);

@@ -8,9 +8,6 @@ export const CARD_DETAIL_REQUESTED = 'CARD_DETAIL_REQUESTED';
 export const CARD_DETAIL_SUCCEEDED = 'CARD_DETAIL_SUCCEEDED';
 export const CARD_DETAIL_FAILED = 'CARD_DETAIL_FAILED';
 
-// clear store
-export const CREATE_STORE_CLEAR = 'CREATE_STORE_CLEAR';
-
 // Cards action creators
 export const cardsRequested = (pageId) => ({
   type: CARDS_REQUESTED,
@@ -25,10 +22,6 @@ export const cardsSucceeded = cards => ({
 export const cardsFailed = reason => ({
   type: CARDS_FAILED,
   reason
-});
-
-export const createStoreClear = () => ({
-  type: CREATE_STORE_CLEAR
 });
 
 // Card Detail action creators
